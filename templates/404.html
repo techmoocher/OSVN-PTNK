@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Page Not Found | Operation Smile PTNK{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/error.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="error-wrapper">
+    <div class="error-content">
+        <div class="error-text">
+            <h1>404</h1>
+            <p>The page you were looking for has moved or never existed. Let’s guide you back to the moments that are changing lives.</p>
+            <div class="error-actions">
+                <a class="btn btn--primary" href="{% url 'pages:home' %}">Return home</a>
+            </div>
+        </div>
+        <div class="error-illustration" aria-hidden="true">
+            <svg viewBox="0 0 240 240" role="presentation" focusable="false">
+                <defs>
+                    <linearGradient id="smile-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#4da8da" stop-opacity="0.95"></stop>
+                        <stop offset="100%" stop-color="#f4b942" stop-opacity="0.9"></stop>
+                    </linearGradient>
+                </defs>
+                <circle cx="120" cy="120" r="110" fill="url(#smile-gradient)" opacity="0.35"></circle>
+                <circle cx="120" cy="120" r="80" fill="#fff"></circle>
+                <path d="M75 140c14 22 44 26 64 0" fill="none" stroke="#4da8da" stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="95" cy="105" r="8" fill="#1f4c7a"></circle>
+                <circle cx="145" cy="105" r="8" fill="#1f4c7a"></circle>
+                <path d="M60 75l20 12" stroke="#f45d5d" stroke-width="4" stroke-linecap="round"></path>
+                <path d="M180 75l-20 12" stroke="#f45d5d" stroke-width="4" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </div>
+    <!-- <div class="error-help">
+        <strong>Need a hand?</strong>
+        <span>Email <a href="mailto:operationsmile@ptnk.edu.vn">operationsmile@ptnk.edu.vn</a> or DM @operationsmileptnk. We’ll get you where you need to go.</span>
+    </div> -->
+</section>
+{% endblock %}

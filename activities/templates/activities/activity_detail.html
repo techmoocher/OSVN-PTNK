@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ activity.title }} | Operation Smile PTNK{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/activities.css' %}">
+{% endblock %}
+
+{% block content %}
+<article class="activity-detail">
+    <header class="activity-detail__hero">
+        {% if activity.cover_image %}
+        <img src="{{ activity.cover_image.url }}" alt="{{ activity.cover_image_alt|default:activity.title }}">
+        {% endif %}
+        <div class="activity-detail__hero-overlay">
+            <h1>{{ activity.title }}</h1>
+            <div class="activity-detail__meta">
+                <span>{{ activity.event_date|date:'F j, Y' }}</span>
+                <span>{{ activity.location }}</span>
+                {% if activity.is_featured %}<span>Featured</span>{% endif %}
+            </div>
+        </div>
+    </header>
+
+    <div class="activity-detail__content">
+        <div class="activity-detail__body">
+            {{ activity.body|linebreaks }}
+        </div>
+        <aside class="activity-detail__sidebar">
+            {% if activity.registration_url %}
+            <div class="activity-detail__card">
+                <h2>Join this activity</h2>
+                <p>Spaces are limited—let us know you’re coming.</p>
+                <a class="btn btn--primary" href="{{ activity.registration_url }}" target="_blank" rel="noopener">Register now</a>
+            </div>
+            {% endif %}
+            {% if activity.donation_url %}
+            <div class="activity-detail__card">
+                <h2>Support this mission</h2>
+                <p>Your donation helps cover medical supplies, travel costs, and patient care.</p>
+                <a class="btn btn--secondary" href="{{ activity.donation_url }}" target="_blank" rel="noopener">Give today</a>
+            </div>
+            {% endif %}
+            {% if media_items %}
+            <div class="activity-detail__card">
+                <h2>Media gallery</h2>
+                <div class="activity-media">
+                    {% for item in media_items %}
+                    <div class="activity-media__item">
+                        {% if item.media_type == 'image' and item.file %}
+                        <img src="{{ item.file.url }}" alt="{{ item.title|default:activity.title }}">
+                        {% elif item.media_type == 'video' %}
+                            {% if item.embed_url %}
+                            <iframe src="{{ item.embed_url }}" title="{{ item.title|default:'Video highlight' }}" allowfullscreen loading="lazy"></iframe>
+                            {% elif item.file %}
+                            <video controls>
+                                <source src="{{ item.file.url }}">
+                                Your browser does not support the video tag.
+                            </video>
+                            {% endif %}
+                        {% elif item.media_type == 'document' %}
+                            <a class="btn btn--secondary" href="{{ item.embed_url|default:item.file.url }}" target="_blank" rel="noopener">{{ item.title|default:'View document' }}</a>
+                        {% endif %}
+                        {% if item.caption %}
+                        <p style="margin-top: 0.5rem; color: var(--color-slate); font-size: 0.9rem;">{{ item.caption }}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </aside>
+    </div>
+</article>
+
+<section class="related-activities">
+    <h2 class="section-heading">More from Operation Smile PTNK</h2>
+    <div class="related-activities__list">
+        {% for related in related_activities %}
+        <article class="card">
+            {% if related.cover_image %}
+            <div class="card__image">
+                <img src="{{ related.cover_image.url }}" alt="{{ related.cover_image_alt|default:related.title }}" loading="lazy">
+            </div>
+            {% endif %}
+            <div class="card__body">
+                <div class="card__meta">
+                    <span class="tag">{{ related.event_date|date:'M j, Y' }}</span>
+                    <span>{{ related.location }}</span>
+                </div>
+                <h3 class="card__title">{{ related.title }}</h3>
+                <p class="card__summary">{{ related.summary }}</p>
+            </div>
+            <div class="card__actions">
+                <a class="btn btn--secondary" href="{% url 'activities:detail' related.slug %}">Read more</a>
+            </div>
+        </article>
+        {% empty %}
+        <p>No additional activities available right now.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Join Us | Operation Smile PTNK{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="info-section" style="margin-top: 3rem;">
+    <h1>Join Operation Smile PTNK</h1>
+    <p>Become part of a student-led movement that funds cleft surgeries, partners with Operation Smile Vietnam, and brings compassion to every mission. We welcome students with every skillset—from event planning and communications to logistics and design.</p>
+    <div class="hero__actions" style="margin-top: 1.5rem;">
+        <a class="btn btn--primary" href="{{ join_form_url }}" target="_blank" rel="noopener">Complete the Google Form</a>
+        <a class="btn btn--secondary" href="mailto:operationsmile@ptnk.edu.vn">Email the leadership team</a>
+    </div>
+</section>
+
+<section class="info-section">
+    <h2>Why students join</h2>
+    <ul>
+        <li>Plan creative fundraisers that directly support medical missions.</li>
+        <li>Volunteer alongside doctors and nurses on Operation Smile trips.</li>
+        <li>Develop leadership, project management, and teamwork skills.</li>
+        <li>Make lifelong friendships with passionate student volunteers.</li>
+    </ul>
+</section>
+
+<section class="info-section">
+    <h2>How to get started</h2>
+    <ol style="margin: 1rem 0 0; padding-left: 1.2rem; color: var(--color-slate);">
+        <li>Fill out the Google Form so we know your interests and availability.</li>
+        <li>Join our next general meeting to meet the leadership team.</li>
+        <li>Choose a committee or project that fits your strengths.</li>
+        <li>Stay connected via email and Instagram for updates.</li>
+    </ol>
+</section>
+
+<section class="supporters-section" style="margin-top: 3rem;">
+    <h2>Questions?</h2>
+    <p>DM us on Instagram <strong>@operationsmileptnk</strong> or send an email—our student leaders are ready to help.</p>
+    <div class="cta-banner__actions" style="margin-top: 1.5rem;">
+        <a class="btn btn--secondary" href="https://www.instagram.com/operationsmileptnk/" target="_blank" rel="noopener">Message on Instagram</a>
+        <a class="btn btn--secondary" href="mailto:operationsmile@ptnk.edu.vn">Send us an email</a>
+    </div>
+</section>
+{% endblock %}

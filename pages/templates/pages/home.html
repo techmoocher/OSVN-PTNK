@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Operation Smile PTNK | Healing Smiles Together{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="home-hero">
+	<div class="hero__content">
+		<h1>Together we create brighter futures for children</h1>
+		<p>Operation Smile PTNK empowers students to fundraise, volunteer, and advocate for life-changing cleft surgeries. Join us on campus and on mission trips to bring more smiles to communities across Vietnam.</p>
+		<div class="hero__actions">
+			<a class="btn btn--primary" href="{% url 'pages:join' %}">Join the Chapter</a>
+			<a class="btn btn--secondary" href="{% url 'activities:list' %}">Explore Activities</a>
+		</div>
+	</div>
+	<div class="home-hero__media">
+		<img class="home-hero__image" src="{% static 'assets/images/operation-smile.png' %}" alt="Students volunteering with Operation Smile PTNK">
+	</div>
+</section>
+
+<section class="impact-stats">
+	<h2 class="section-heading">Our community impact</h2>
+	<p class="section-subtitle">We combine heart, hustle, and hope to transform access to safe surgeries.</p>
+	<div class="impact-stats__grid">
+		<article class="impact-card">
+			<div class="impact-card__icon">❤️</div>
+			<p class="impact-card__value">{{ upcoming_activities|length|default:0 }}+</p>
+			<p class="impact-card__label">Upcoming volunteer opportunities this semester</p>
+		</article>
+		<article class="impact-card">
+			<div class="impact-card__icon">🌏</div>
+			<p class="impact-card__value">{{ recent_activities|length|default:0 }}+</p>
+			<p class="impact-card__label">Recent smiles supported through chapter trips</p>
+		</article>
+		<article class="impact-card">
+			<div class="impact-card__icon">🤝</div>
+			<p class="impact-card__value">{{ spotlight_members|length|default:0 }}+</p>
+			<p class="impact-card__label">Student leaders coordinating fundraising and service</p>
+		</article>
+	</div>
+</section>
+
+<section class="activities-section">
+	<div class="activities-section__header">
+		<div>
+			<h2 class="section-heading">Featured activities</h2>
+			<p class="section-subtitle">Stories from the field that capture the spirit of Operation Smile PTNK.</p>
+		</div>
+		<div class="activities-section__actions">
+			<a class="btn btn--secondary" href="{% url 'activities:list' %}">See all activities</a>
+		</div>
+	</div>
+	<div class="card-grid">
+		{% for activity in featured_activities %}
+		<article class="card">
+			{% if activity.cover_image %}
+			<div class="card__image">
+				<img src="{{ activity.cover_image.url }}" alt="{{ activity.cover_image_alt|default:activity.title }}">
+			</div>
+			{% endif %}
+			<div class="card__body">
+				<div class="card__meta">
+					<span class="tag">{{ activity.event_date|date:'M j, Y' }}</span>
+					<span>{{ activity.location }}</span>
+				</div>
+				<h3 class="card__title">{{ activity.title }}</h3>
+				<p class="card__summary">{{ activity.summary }}</p>
+			</div>
+			<div class="card__actions">
+				<a class="btn btn--primary" href="{% url 'activities:detail' activity.slug %}">Read the story</a>
+			</div>
+		</article>
+		{% empty %}
+		<p>No featured activities yet—check back soon!</p>
+		{% endfor %}
+	</div>
+</section>
+
+<section class="activities-section">
+	<h2 class="section-heading">Upcoming opportunities</h2>
+	<p class="section-subtitle">Sign up early to secure your spot on upcoming missions and service projects.</p>
+	<div class="card-grid">
+		{% for activity in upcoming_activities %}
+		<article class="card">
+			<div class="card__body">
+				<div class="card__meta">
+					<span class="tag">{{ activity.event_date|date:'M j' }}</span>
+					<span>{{ activity.location }}</span>
+				</div>
+				<h3 class="card__title">{{ activity.title }}</h3>
+				<p class="card__summary">{{ activity.summary }}</p>
+			</div>
+			<div class="card__actions">
+				<a class="btn btn--secondary" href="{% url 'activities:detail' activity.slug %}">View details</a>
+			</div>
+		</article>
+		{% empty %}
+		<p>No upcoming activities yet. Stay tuned for new announcements.</p>
+		{% endfor %}
+	</div>
+</section>
+
+<section class="team-spotlight">
+	<h2 class="section-heading">Meet the student leaders</h2>
+	<p class="section-subtitle">Spotlight on the people organizing fundraisers, volunteer trips, and outreach.</p>
+	<div class="team-spotlight__grid">
+		{% for member in spotlight_members %}
+		<article class="team-card">
+			<div class="team-card__avatar">
+				{% if member.photo %}
+				<img src="{{ member.photo.url }}" alt="Portrait of {{ member.name }}" loading="lazy">
+				{% else %}
+				{{ member.name|first }}
+				{% endif %}
+			</div>
+			<div class="team-card__name">{{ member.name }}</div>
+			<div class="team-card__role">{{ member.role }}</div>
+		</article>
+		{% empty %}
+		<p>Our team roster is coming soon.</p>
+		{% endfor %}
+	</div>
+</section>
+
+<section class="highlight-banner">
+	<h2>Ready to create more smiles?</h2>
+	<p>Join our next general meeting, volunteer for an outreach trip, or pitch your idea for the next big fundraiser. Every action you take brings life-changing surgeries closer to children who need them.</p>
+	<a class="btn btn--secondary" href="{% url 'pages:join' %}">Join Operation Smile PTNK</a>
+</section>
+{% endblock %}

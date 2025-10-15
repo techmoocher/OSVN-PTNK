@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About | Operation Smile PTNK{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="profile-hero">
+	<div class="profile-hero__text">
+		<h1>Changing Lives one Smile at a time</h1>
+		<p>Founded at VNUHCM High School for the Gifted, Operation Smile @ PTNK mobilises students to fundraise, volunteer, and advocate for children born with cleft lip and palate. We partner with Operation Smile Vietnam to support medical missions and post-operation care.</p>
+	</div>
+	<div class="profile-hero__media">
+		<div class="info-card">
+			<strong>{{ total_members }}</strong> active members this year
+		</div>
+		<div class="info-card">
+			<strong>{{ total_activities }}</strong> activities hosted by our chapter
+		</div>
+	</div>
+</section>
+
+<section class="values-grid">
+	<article class="value-card">
+		<h3>Compassion</h3>
+		<p>We show up for children and families with empathy, listening first and acting with care.</p>
+	</article>
+	<article class="value-card">
+		<h3>Leadership</h3>
+		<p>Students take the lead in planning fundraisers, awareness campaigns, and mission support.</p>
+	</article>
+	<article class="value-card">
+		<h3>Impact</h3>
+		<p>Every project aims to expand access to safe surgeries and build long-term community partnerships.</p>
+	</article>
+</section>
+
+<section class="timeline">
+	<div class="timeline-item">
+		<div class="timeline-item__date">2012</div>
+		<div class="timeline-item__title">Chapter launch</div>
+		<p class="timeline-item__description">Student leaders introduce Operation Smile to PTNK and host the first campus fundraiser.</p>
+	</div>
+	<div class="timeline-item">
+		<div class="timeline-item__date">2016</div>
+		<div class="timeline-item__title">First medical mission</div>
+		<p class="timeline-item__description">Volunteers join Operation Smile Vietnam on a regional trip, supporting screenings and post-op care.</p>
+	</div>
+	<div class="timeline-item">
+		<div class="timeline-item__date">2020</div>
+		<div class="timeline-item__title">Virtual outreach</div>
+		<p class="timeline-item__description">The chapter pivots to online campaigns, raising funds for PPE and remote patient support.</p>
+	</div>
+	<div class="timeline-item">
+		<div class="timeline-item__date">Today</div>
+		<div class="timeline-item__title">Expanding our reach</div>
+		<p class="timeline-item__description">We continue to grow partnerships, mentor new members, and plan larger scale service trips.</p>
+	</div>
+</section>
+
+<section class="info-section">
+	<h2>What we do</h2>
+	<p>Operation Smile PTNK volunteers coordinate year-round activities that combine fundraising, advocacy, and hands-on service to support medical missions across Vietnam.</p>
+	<ul>
+		<li>Host charity concerts, bake sales, and campus campaigns that fund surgeries.</li>
+		<li>Coordinate volunteer delegations for Operation Smile missions and patient support days.</li>
+		<li>Lead awareness workshops for students and parents about cleft lip and palate care.</li>
+		<li>Partner with local hospitals and alumni to deliver post-operation care packages.</li>
+	</ul>
+</section>
+
+<!-- <section class="supporters-section">
+	<h2>Thank you to our partners</h2>
+	<p>We are grateful for the mentoring, sponsorship, and medical excellence provided by our partners.</p>
+	<div class="supporters-grid">
+		<span class="supporter-chip">Operation Smile Vietnam</span>
+		<span class="supporter-chip">Nguyen Thi Minh Khai High School</span>
+		<span class="supporter-chip">Alumni Network</span>
+		<span class="supporter-chip">Local Hospitals &amp; Clinics</span>
+	</div>
+</section> -->
+{% endblock %}

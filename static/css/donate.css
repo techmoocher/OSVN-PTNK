@@ -1,0 +1,74 @@
+.donate-coming-soon {
+	margin: 4rem auto;
+	max-width: 720px;
+	background: #fff;
+	padding: 3rem;
+	border-radius: 26px;
+	text-align: center;
+	box-shadow: 0 16px 32px rgba(17, 44, 74, 0.12);
+}
+
+.donate-coming-soon h1 {
+	font-size: clamp(2rem, 3.2vw, 2.6rem);
+	color: var(--color-navy);
+	margin-bottom: 1rem;
+}
+
+.donate-coming-soon p {
+	color: var(--color-slate);
+	font-size: 1.05rem;
+	margin-bottom: 1.5rem;
+}
+
+.donate-coming-soon__steps {
+	text-align: left;
+	margin: 0 auto 2rem;
+	max-width: 520px;
+	padding-left: 1.1rem;
+	color: var(--color-slate);
+}
+
+.donate-coming-soon__steps li {
+	margin-bottom: 0.75rem;
+}
+
+.subscribe-card {
+	margin-top: 2.5rem;
+	background: linear-gradient(135deg, rgba(77, 168, 218, 0.16), rgba(244, 93, 93, 0.16));
+	padding: 1.75rem;
+	border-radius: 20px;
+}
+
+.subscribe-card form {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: 1fr auto;
+}
+
+.subscribe-card input[type='email'] {
+	padding: 0.85rem 1.1rem;
+	border-radius: 999px;
+	border: 1px solid rgba(17, 44, 74, 0.2);
+	font-size: 1rem;
+}
+
+.subscribe-card button {
+	border: none;
+	border-radius: 999px;
+	padding: 0.85rem 1.35rem;
+	background: var(--color-light-navy);
+	color: #fff;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.subscribe-card button:hover,
+.subscribe-card button:focus-visible {
+	background: var(--color-navy);
+}
+
+@media (max-width: 540px) {
+	.subscribe-card form {
+		grid-template-columns: 1fr;
+	}
+}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Activities | Operation Smile PTNK{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/activities.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="activities-page">
+    <div class="activities-filter">
+        <div>
+            <h1 class="section-heading">Activities &amp; mission trips</h1>
+            <p class="section-subtitle">Discover how Operation Smile PTNK raises funds, supports medical teams, and spreads smiles.</p>
+        </div>
+        <div class="activities-filter__info">
+            <span>{{ upcoming_activities|length }} upcoming · {{ past_activities|length }} past</span>
+        </div>
+    </div>
+
+    <section>
+        <h2 class="section-heading" style="font-size: 1.6rem;">Upcoming</h2>
+        {% if upcoming_activities %}
+            {% for activity in upcoming_activities %}
+            <article class="activity-card">
+                {% if activity.cover_image %}
+                <div class="activity-card__cover">
+                    <img src="{{ activity.cover_image.url }}" alt="{{ activity.cover_image_alt|default:activity.title }}" loading="lazy">
+                </div>
+                {% endif %}
+                <div>
+                    <div class="activity-card__meta">
+                        <span class="tag">{{ activity.event_date|date:'M j, Y' }}</span>
+                        <span>{{ activity.location }}</span>
+                    </div>
+                    <h3 class="activity-card__title">{{ activity.title }}</h3>
+                    <p class="activity-card__summary">{{ activity.summary }}</p>
+                    <a class="btn btn--secondary" href="{% url 'activities:detail' activity.slug %}">Event details</a>
+                </div>
+            </article>
+            {% endfor %}
+        {% else %}
+            <p>No upcoming activities right now. Follow us on Instagram for announcements.</p>
+        {% endif %}
+    </section>
+
+    <section style="margin-top: 3rem;">
+        <h2 class="section-heading" style="font-size: 1.6rem;">Past highlights</h2>
+        {% if past_activities %}
+            {% for activity in past_activities %}
+            <article class="activity-card">
+                {% if activity.cover_image %}
+                <div class="activity-card__cover">
+                    <img src="{{ activity.cover_image.url }}" alt="{{ activity.cover_image_alt|default:activity.title }}" loading="lazy">
+                </div>
+                {% endif %}
+                <div>
+                    <div class="activity-card__meta">
+                        <span class="tag">{{ activity.event_date|date:'M j, Y' }}</span>
+                        <span>{{ activity.location }}</span>
+                    </div>
+                    <h3 class="activity-card__title">{{ activity.title }}</h3>
+                    <p class="activity-card__summary">{{ activity.summary }}</p>
+                    <a class="btn btn--secondary" href="{% url 'activities:detail' activity.slug %}">Read recap</a>
+                </div>
+            </article>
+            {% endfor %}
+        {% else %}
+            <p>We’re preparing new recaps from recent missions. Please check back soon.</p>
+        {% endif %}
+    </section>
+</section>
+{% endblock %}

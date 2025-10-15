@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Team | Operation Smile PTNK{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="info-section" style="margin-top: 3rem;">
+    <h1>Meet the Operation Smile PTNK team</h1>
+    <p>These student leaders organise fundraisers, coordinate mission trips, and champion our chapter’s mission on campus.</p>
+    <div class="team-grid">
+        {% for member in members %}
+        <article class="team-profile">
+            <div class="team-profile__photo">
+                {% if member.photo %}
+                <img src="{{ member.photo.url }}" alt="Portrait of {{ member.name }}" loading="lazy">
+                {% else %}
+                {{ member.name|first }}
+                {% endif %}
+            </div>
+            <div>
+                <div class="team-profile__name">{{ member.name }}</div>
+                <div class="team-profile__role">{{ member.role }}</div>
+            </div>
+            <p class="team-profile__bio">{{ member.bio }}</p>
+            {% if member.social_links %}
+            <div class="team-profile__links">
+                {% for label, url in member.social_links %}
+                <a href="{{ url }}" target="_blank" rel="noopener">{{ label }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </article>
+        {% empty %}
+        <p>Our team introductions are coming soon—check back after our next recruitment drive.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

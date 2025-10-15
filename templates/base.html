@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block title %}Operation Smile PTNK{% endblock %}</title>
+	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+	{% block extra_css %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+	<a class="sr-only" href="#main-content">Skip to content</a>
+
+	<header class="site-header">
+		<div class="site-header__inner">
+			<a href="{% url 'pages:home' %}" class="brand" aria-label="Operation Smile PTNK home">
+				<img src="{% static 'assets/images/operation-smile.png' %}" alt="Operation Smile PTNK logo" class="brand__logo">
+				<span class="brand__name">Operation Smile PTNK</span>
+			</a>
+			<button class="nav-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" data-nav-toggle>
+				<span class="sr-only">Toggle navigation</span>
+				&#9776;
+			</button>
+			<nav id="primary-navigation" class="primary-nav" data-nav-menu>
+				<a href="{% url 'pages:home' %}" class="primary-nav__link {% if request.resolver_match and request.resolver_match.url_name == 'home' %}is-active{% endif %}">Home</a>
+				<a href="{% url 'pages:about' %}" class="primary-nav__link {% if request.resolver_match and request.resolver_match.url_name == 'about' %}is-active{% endif %}">About</a>
+				<a href="{% url 'activities:list' %}" class="primary-nav__link {% if request.resolver_match and request.resolver_match.namespace == 'activities' %}is-active{% endif %}">Activities</a>
+				<a href="{% url 'pages:join' %}" class="primary-nav__link {% if request.resolver_match and request.resolver_match.url_name == 'join' %}is-active{% endif %}">Join Us</a>
+				<a href="{% url 'pages:team' %}" class="primary-nav__link {% if request.resolver_match and request.resolver_match.url_name == 'team' %}is-active{% endif %}">Our Team</a>
+				<a href="{% url 'pages:donate' %}" class="primary-nav__cta{% if request.resolver_match and request.resolver_match.url_name == 'donate' %} is-active{% endif %}">Donate</a>
+			</nav>
+		</div>
+	</header>
+
+	<main id="main-content" class="page-wrapper">
+		{% block content %}{% endblock %}
+	</main>
+
+	<footer class="site-footer">
+		<div class="site-footer__inner">
+			<div>
+				<h3>Operation Smile PTNK</h3>
+				<p>Nguyen Thi Minh Khai High School</p>
+				<p>Ho Chi Minh City, Vietnam</p>
+			</div>
+			<div class="footer-nav">
+				<strong>Explore</strong>
+				<a href="{% url 'pages:home' %}">Home</a>
+				<a href="{% url 'pages:about' %}">About</a>
+				<a href="{% url 'activities:list' %}">Activities</a>
+				<a href="{% url 'pages:team' %}">Our Team</a>
+			</div>
+			<div class="footer-contact">
+				<strong>Contact</strong>
+				<a href="mailto:operationsmile@ptnk.edu.vn">operationsmile@ptnk.edu.vn</a>
+				<span>Instagram: @operationsmileptnk</span>
+			</div>
+		</div>
+		<p class="site-footer__credit">&copy; {% now 'Y' %} Operation Smile PTNK. All rights reserved.</p>
+	</footer>
+
+	<script src="{% static 'js/main.js' %}"></script>
+	{% block extra_js %}{% endblock %}
+</body>
+</html>
